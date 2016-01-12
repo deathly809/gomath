@@ -30,3 +30,16 @@ func MinInt64(a int64, rem ...int64) int64 {
 func AbsInt64(a int64) int64 {
     return MaxInt64(a,-a)
 }
+
+// ClampInt64 will clamp a given value between a low and 
+// high value inclusively.
+func ClampInt64(low, high, val int64) (result int64) {
+    if val < low {
+        result = low
+    }else if val > high {
+        result = high
+    }else {
+        result = val
+    }
+    return
+}

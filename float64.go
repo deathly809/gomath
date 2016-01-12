@@ -30,3 +30,16 @@ func MinFloat64(a float64, rem ...float64) float64 {
 func AbsFloat64(a float64) float64 {
     return MaxFloat64(a,-a)
 }
+
+// ClampFloat64 will clamp a given value between a low and 
+// high value inclusively.
+func ClampFloat64(low, high, val float64) (result float64) {
+    if val < low {
+        result = low
+    }else if val > high {
+        result = high
+    }else {
+        result = val
+    }
+    return
+}

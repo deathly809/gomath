@@ -30,3 +30,17 @@ func MinFloat32(a float32, rem ...float32) float32 {
 func AbsFloat32(a float32) float32 {
     return MaxFloat32(a,-a)
 }
+
+
+// ClampFloat32 will clamp a given value between a low and 
+// high value inclusively.
+func ClampFloat32(low, high, val float32) (result float32) {
+    if val < low {
+        result = low
+    }else if val > high {
+        result = high
+    }else {
+        result = val
+    }
+    return
+}
