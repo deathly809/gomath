@@ -1,18 +1,17 @@
 package probability
 
-import (
-    "github.com/deathly809/gomath"
-)
-
 // NChooseK returns n!/(k!*(n-k)!)
 func NChooseK(n, k int) int {
-    result := 1
+    c := 1
     
-    k = gomath.MaxInt(k,n-k)
-    
-    for i := 1 ; i <= k ; i++ {
-        result = result / i + result % i * n / i
+    if k > (n-k) {
+        k = n - k
     }
     
-    return result
+    for i := 0 ; i < k ; i++ {
+        c *= (n-i)
+        c /= (i+1)
+    }
+    
+    return c
 }
