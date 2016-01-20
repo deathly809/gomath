@@ -52,3 +52,12 @@ func (n *Normal) Variance() float64 {
 func (n *Normal) StdDev() float64 {
 	return n.stddev
 }
+
+// NewNormal creates a new normal distribution
+func NewNormal(mean, variance float64) Distribution {
+	return &Normal{
+		mean:     mean,
+		variance: variance,
+		stddev:   math.Sqrt(variance),
+	}
+}
