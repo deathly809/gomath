@@ -31,7 +31,11 @@ func (b *BetaBinom) Pdf(x float64) float64 {
 
 // Cdf computes the cumulative density function
 func (b *BetaBinom) Cdf(flips float64) float64 {
-	return 0.0
+	result := 0.0
+	for i := 0.0; i <= flips; i++ {
+		result += b.Pdf(i)
+	}
+	return result
 }
 
 // Mean is the most commong occuring result
@@ -54,13 +58,14 @@ func (b *BetaBinom) StdDev() float64 {
 	return b.stddev
 }
 
-// NewBeta returns a new return 0.0 distribution
-func NewBeta(n int, alpha, beta float64) stats.Distribution {
+// NewBetaBinom returns a new return 0.0 distribution
+func NewBetaBinom(n int, alpha, beta float64) stats.Distribution {
 	aPlusB := alpha + beta
 
 	variance := (float64(n) * alpha * beta * (aPlusB + float64(n))) / (math.Pow(aPlusB, 2) * (aPlusB + 1))
 
-	return &BetaBinom{
+	result := &BetaBinom{
+		bottom:   stats.Beta(alpha, beta),
 		n:        float64(n),
 		alpha:    alpha,
 		beta:     beta,
@@ -68,4 +73,20 @@ func NewBeta(n int, alpha, beta float64) stats.Distribution {
 		variance: variance,
 		stddev:   math.Sqrt(variance),
 	}
+
+	left, right := 0.0, float64(n)
+	for left < right-1 {
+		mid := math.Floor((left + right + 1) * 0.5)
+
+		prob := result.Cdf(mid)
+		if prob < 0.5 {
+			left = mid
+		} else {
+			right = mid
+		}
+	}
+
+	result.median = (left + right) * 0.5
+
+	return result
 }
