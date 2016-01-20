@@ -21,11 +21,11 @@ type Bernoulli struct {
 // Pdf computes the probability density function
 func (b *Bernoulli) Pdf(isHead float64) float64 {
 	result := 0.0
-	switch int(flips) {
+	switch int(isHead) {
 	case 0:
-		result = 1 - p
+		result = 1 - b.p
 	case 1:
-		result = p
+		result = b.p
 	}
 	return result
 }

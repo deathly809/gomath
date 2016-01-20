@@ -10,7 +10,7 @@ func Beta(x, y float64) float64 {
 }
 
 // Pochhammer is some junk?
-func Pochhammer(j int, u float64) float64 {
+func Pochhammer(j, u float64) float64 {
 	result := 1.0
 	for u < j {
 		result *= u
@@ -25,7 +25,8 @@ func GeneralHyperGeom(p, q int, z float64, params ...float64) float64 {
 	top := 1.0
 	bottom := 1.0
 	pow := 1.0
-	for j := 1; j < 1000; j++ {
+	fact := 1.0
+	for j := 1.0; j < 1000; j++ {
 		result += (top * pow) / (bottom * fact)
 
 		for i := 0; i < p; i++ {

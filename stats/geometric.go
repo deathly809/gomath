@@ -13,6 +13,7 @@ import (
 type Geometric struct {
 	p        float64
 	mean     float64
+	median   float64
 	stddev   float64
 	variance float64
 }
@@ -20,12 +21,12 @@ type Geometric struct {
 // Pdf is the probability density function.  If the distributions
 // is discrete then this is the probability mass function
 func (n *Geometric) Pdf(x float64) float64 {
-	return p * math.pow(1-p, x-1)
+	return n.p * math.Pow(1-n.p, x-1)
 }
 
 // Cdf is the cumulative density function
 func (n *Geometric) Cdf(x float64) float64 {
-	1 - math.pow(1-p, x)
+	return 1 - math.Pow(1-n.p, x)
 }
 
 // Mean is the mean of the distribution

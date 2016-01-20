@@ -9,7 +9,6 @@ import (
 	"math"
 
 	"github.com/deathly809/gomath"
-	"github.com/deathly809/gomath/stats"
 )
 
 // Uniform holds all information about the distribution
@@ -56,7 +55,7 @@ func (u *Uniform) StdDev() float64 {
 }
 
 // NewUniform creates a continuous uniform distribution
-func NewUniform(low, high int) stats.Distribution {
+func NewUniform(low, high int) Distribution {
 	a := gomath.MinInt(low, high)
 	b := gomath.MaxInt(low, high)
 

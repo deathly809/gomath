@@ -11,7 +11,7 @@ import (
 
 const (
 	// SqrtTwoPi is the square root of 2 times Pi
-	SqrtTwoPi = math.Sqrt(2.0 * math.Pi)
+	SqrtTwoPi = 2.50662827463
 )
 
 // Normal holds all information related to a normal distribution
@@ -24,7 +24,7 @@ type Normal struct {
 // Pdf is the probability density function.  If the distributions
 // is discrete then this is the probability mass function
 func (n *Normal) Pdf(x float64) float64 {
-	exp := -math.pow(x-n.mean, 2) / (2 * n.variance)
+	exp := -math.Pow(x-n.mean, 2) / (2 * n.variance)
 	return math.Exp(exp) / (n.stddev * SqrtTwoPi)
 }
 

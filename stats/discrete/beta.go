@@ -24,8 +24,9 @@ type BetaBinom struct {
 
 // Pdf computes the probability density function
 func (b *BetaBinom) Pdf(x float64) float64 {
+	possibleSubSets := float64(prob.NChooseK(int(b.n), int(x)))
 	top := stats.Beta(b.alpha+x, b.n-x+b.beta)
-	return prob.NChooseK(b.n, x) * top / b.bottom
+	return possibleSubSets * top / b.bottom
 }
 
 // Cdf computes the cumulative density function

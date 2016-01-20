@@ -25,7 +25,7 @@ type PoissonBinom struct {
 func (b *PoissonBinom) t(i float64) float64 {
 	result := 0.0
 	for _, p := range b.p {
-		result += math.Pow(p/(1-p), x)
+		result += math.Pow(p/(1-p), i)
 	}
 	return result
 }
@@ -38,9 +38,9 @@ func (b *PoissonBinom) Pdf(x float64) float64 {
 			result *= (1 - v)
 		}
 	} else {
-		sign := 1
+		sign := 1.0
 		for i := 1.0; i <= x; i++ {
-			result += sign * b.t(i) * (b.Pdf(x - i)) / k
+			result += sign * b.t(i) * (b.Pdf(x - i)) / x
 			sign = -sign
 		}
 	}
