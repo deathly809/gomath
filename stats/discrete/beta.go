@@ -3,20 +3,23 @@ package discrete
 import (
 	"math"
 
+	"github.com/deathly809/gomath/prob"
 	"github.com/deathly809/gomath/stats"
 )
 
 // Beta contains information about the distribution
 type Beta struct {
 	alpha, beta      float64
-	n                int
+	bottom           float64
+	n                float64
 	mean, median     float64
 	variance, stddev float64
 }
 
 // Pdf computes the probability density function
-func (b *Beta) Pdf(flips float64) float64 {
-	return 0.0
+func (b *Beta) Pdf(x float64) float64 {
+	top := stats.Beta(b.alpha+x, b.n-x+b.beta)
+	return prob.NChooseK(b.n, x) * top / b.bottom
 }
 
 // Cdf computes the cumulative density function
@@ -51,7 +54,7 @@ func NewBeta(n int, alpha, beta float64) stats.Distribution {
 	variance := (float64(n) * alpha * beta * (aPlusB + float64(n))) / (math.Pow(aPlusB, 2) * (aPlusB + 1))
 
 	return &Beta{
-		n:        n,
+		n:        float64(n),
 		alpha:    alpha,
 		beta:     beta,
 		mean:     float64(n) * alpha / aPlusB,
