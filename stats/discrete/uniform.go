@@ -1,5 +1,10 @@
 package discrete
 
+/*
+   Discrete Uniform Distribution
+   https://en.wikipedia.org/wiki/Uniform_distribution_(discrete)
+*/
+
 import (
 	"math"
 

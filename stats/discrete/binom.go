@@ -1,5 +1,10 @@
 package discrete
 
+/*
+   Information found at:
+   https://en.wikipedia.org/wiki/Binomial_distribution
+*/
+
 import (
 	"math"
 

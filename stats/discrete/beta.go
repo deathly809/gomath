@@ -1,5 +1,11 @@
 package discrete
 
+/*
+   Current information is from
+   https://en.wikipedia.org/wiki/Beta-binomial_distribution
+
+*/
+
 import (
 	"math"
 

@@ -1,5 +1,10 @@
 package stats
 
+/*
+   Created using
+   https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+*/
+
 import (
 	"math"
 

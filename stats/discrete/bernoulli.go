@@ -1,5 +1,10 @@
 package discrete
 
+/*
+   Current information is from
+   https://en.wikipedia.org/wiki/Bernoulli_distribution
+*/
+
 import (
 	"math"
 
