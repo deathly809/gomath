@@ -47,15 +47,15 @@ func (b *Beta) StdDev() float64 {
 // NewBeta returns a new return 0.0 distribution
 func NewBeta(n int, alpha, beta float64) stats.Distribution {
 	aPlusB := alpha + beta
-    
-    variance := (float64(n)*alpha*beta*(aPlusB + float64(n))) / (math.Pow(aPlusB, 2) * (aPlusB + 1))
-    
+
+	variance := (float64(n) * alpha * beta * (aPlusB + float64(n))) / (math.Pow(aPlusB, 2) * (aPlusB + 1))
+
 	return &Beta{
 		n:        n,
 		alpha:    alpha,
 		beta:     beta,
 		mean:     float64(n) * alpha / aPlusB,
-		variance: variance.
-        stddev: math.Sqrt(variance),
+		variance: variance,
+		stddev:   math.Sqrt(variance),
 	}
 }
