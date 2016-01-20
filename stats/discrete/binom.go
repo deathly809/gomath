@@ -1,10 +1,10 @@
-package stats
+package discrete
 
 import (
 	"math"
 
 	"github.com/deathly809/gomath/prob"
-    "github.com/deathly809/gomath/stats"
+	"github.com/deathly809/gomath/stats"
 )
 
 // Binomial contains information about the distribution

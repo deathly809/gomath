@@ -1,4 +1,4 @@
-package discrete
+package stats
 
 import (
 	"math"

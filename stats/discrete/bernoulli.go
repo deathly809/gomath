@@ -1,29 +1,28 @@
-package stats
+package discrete
 
 import (
 	"math"
 
-	"github.com/deathly809/gomath/prob"
-    "github.com/deathly809/gomath/stats"
+	"github.com/deathly809/gomath/stats"
 )
 
 // Bernoulli contains information about the distribution
 type Bernoulli struct {
 	p                float64
-	median     float64
+	median           float64
 	variance, stddev float64
 }
 
 // Pdf computes the probability density function
-func (b *Bernoulli) Pdf(flips float64) float64 {
+func (b *Bernoulli) Pdf(isHead float64) float64 {
 	result := 0.0
-    switch int(flips) {
-    case 0:
-        result = p
-    case 1:
-        result = 1 - p
-    }
-    return result
+	switch int(flips) {
+	case 0:
+		result = 1 - p
+	case 1:
+		result = p
+	}
+	return result
 }
 
 // Cdf computes the cumulative density function
@@ -57,18 +56,19 @@ func (b *Bernoulli) StdDev() float64 {
 
 // NewBernoulli returns a new Bernoulli distribution
 func NewBernoulli(p float64) stats.Distribution {
-    med := 0.0
-    switch {
-        case p == 0.5:
-            med = 0.5
-        case p > 0.5: 
-            med = 1.0
-    }
-     
+	med := 0.0
+
+	switch {
+	case p == 0.5:
+		med = 0.5
+	case p > 0.5:
+		med = 1.0
+	}
+
 	return &Bernoulli{
 		p:        p,
-		median: med,   
-		variance: p * (1-            p),
-		stddev:   1.0,
+		median:   med,
+		variance: p * (1 - p),
+		stddev:   math.Sqrt(p * (1 - p)),
 	}
 }
