@@ -14,7 +14,7 @@ func Pochhammer(j int, u float64) float64 {
 	result := 1.0
 	for u < j {
 		result *= u
-		u += 1
+		u++
 	}
 	return result
 }
