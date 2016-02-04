@@ -43,3 +43,9 @@ func ClampFloat64(low, high, val float64) (result float64) {
     }
     return
 }
+
+// ScaleFloat64 will scale a number from the old range
+// to the new range
+func ScaleFloat64(low, high, oldLow, oldHigh, value float64) float64 {
+	return low + high*((value-oldLow)/(oldHigh - oldLow))
+}

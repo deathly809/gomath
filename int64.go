@@ -43,3 +43,9 @@ func ClampInt64(low, high, val int64) (result int64) {
     }
     return
 }
+
+// ScaleInt64 will scale a number from the old range
+// to the new range
+func ScaleInt64(low, high, oldLow, oldHigh, value int64) int64 {
+	return low + high*((value-oldLow)/(oldHigh - oldLow))
+}
