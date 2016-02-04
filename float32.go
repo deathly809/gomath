@@ -46,5 +46,5 @@ func ClampFloat32(low, high, val float32) (result float32) {
 // ScaleFloat32 will scale a number from the old range
 // to the new range
 func ScaleFloat32(low, high, oldLow, oldHigh, value float32) float32 {
-	return low + high*((value-oldLow)/(oldHigh - oldLow))
+	return low + (high-low)*((value-oldLow)/(oldHigh-oldLow))
 }
