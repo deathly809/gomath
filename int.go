@@ -43,3 +43,9 @@ func ClampInt(low, high, val int) (result int) {
     }
     return
 }
+
+// ScaleInt will scale a number from the old range
+// to the new range
+func ScaleInt(low, high, oldLow, oldHigh, value int) int {
+	return low + high*((value-oldLow)/(oldHigh - oldLow))
+}

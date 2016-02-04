@@ -43,3 +43,9 @@ func ClampInt32(low, high, val int32) (result int32) {
     }
     return
 }
+
+// ScaleInt32 will scale a number from the old range
+// to the new range
+func ScaleInt32(low, high, oldLow, oldHigh, value int32) int32 {
+	return low + high*((value-oldLow)/(oldHigh - oldLow))
+}
