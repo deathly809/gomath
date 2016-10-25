@@ -6,20 +6,29 @@ const (
 	eps = float32(1E-8)
 )
 
+func within(value, low, high float32) bool {
+	return value > low && value < high
+}
+
+// This tries to put values close enough to 0 or 1
+// if needed.  Not numerically sound but usually
+// right for what I am doing
 func clamp(value float32) float32 {
+
 	// Close enough to 0
-	if value < eps && value > -eps {
+	if within(value, -eps, eps) {
 		return 0
 	}
 
 	// Close enough to 1
-	if value < (1+eps) && value > (1-eps) {
+	if within(value, 1-eps, 1+eps) {
 		return 1
 	}
 
 	return value
 }
 
+// Just swap the rows in a matrix
 func swap(m Matrix, rowA, rowB int) {
 	_, cols := m.Dim()
 	for col := 0; col < cols; col++ {
@@ -29,6 +38,7 @@ func swap(m Matrix, rowA, rowB int) {
 	}
 }
 
+// Divide everything on this row by a value
 func divide(m Matrix, row int, divisor float32) {
 	_, cols := m.Dim()
 	for col := 0; col < cols; col++ {
@@ -58,8 +68,8 @@ func Inverse(m Matrix) (Matrix, error) {
 	result := NewMatrix(rows, cols)
 
 	// make identity
-	for r := 0; r < rows; r++ {
-		result.Set(r, r, 1)
+	for row := 0; row < rows; row++ {
+		result.Set(row, row, 1)
 	}
 
 	for col := 0; col < cols; col++ {
@@ -135,7 +145,6 @@ func Determinant(m Matrix) (float32, error) {
 		for row := 0; row < rows; row++ {
 			if (row != col) && tmp.Get(row, col) != 0 {
 				value := tmp.Get(row, col) / tmp.Get(col, col)
-
 				subtract(tmp, row, col, value) // row = row - value * col
 			}
 		}

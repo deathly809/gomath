@@ -92,7 +92,7 @@ func (m *mat) String() string {
 	rows, cols := m.Dim()
 	for r := 0; r < rows; r++ {
 		for c := 0; c < cols; c++ {
-			buffer.WriteString(fmt.Sprintf("%5f ", m.Get(r, c)))
+			buffer.WriteString(fmt.Sprintf("%f ", m.Get(r, c)))
 		}
 		buffer.WriteString("\n")
 	}

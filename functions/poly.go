@@ -21,8 +21,12 @@ func pow(x float32, p int) (result float32) {
 
 func (p *poly) Eval(x float32) (result float32) {
 	tmp := p.head
+	base := float32(1.0)
+	prev := 0
 	for tmp != nil {
-		result += tmp.coeff * pow(x, tmp.degree)
+		base = base * pow(x, tmp.degree-prev)
+		prev = tmp.degree
+		result += tmp.coeff * base
 		tmp = tmp.next
 	}
 	return

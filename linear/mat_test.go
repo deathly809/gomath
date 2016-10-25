@@ -1,6 +1,7 @@
 package linear
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 )
@@ -89,4 +90,41 @@ func TestVectorDotFailure(t *testing.T) {
 		t.Logf("Expected %f but found %f\n", expected, found)
 		t.Fail()
 	}
+}
+
+func TestInverse(t *testing.T) {
+	U := randomMatrix(5, 5)
+	S := NewMatrix(5, 5)
+	for i := 0; i < 5; i++ {
+		S.Set(i, i, rand.Float32())
+	}
+	V := randomMatrix(5, 5)
+
+	U.Mult(S)
+	U.Mult(V)
+
+	m, err := Inverse(U)
+	if err != nil {
+		t.Log(err)
+	}
+
+	m.Mult(U)
+}
+
+func TestDeterminant(t *testing.T) {
+	U := randomMatrix(5, 5)
+	S := NewMatrix(5, 5)
+	for i := 0; i < 5; i++ {
+		S.Set(i, i, rand.Float32())
+	}
+	V := randomMatrix(5, 5)
+
+	U.Mult(S)
+	U.Mult(V)
+
+	m, err := Determinant(U)
+	if err != nil {
+		t.Log(err)
+	}
+	fmt.Println(m)
 }

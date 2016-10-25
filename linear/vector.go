@@ -21,8 +21,10 @@ func (v vector) Dim() int {
 }
 
 func (v vector) Dot(o Vector) (result float32) {
-	for i := 0; i < v.len; i++ {
-		result += v.Get(i) * o.Get(i)
+	if v.len == o.Dim() {
+		for i := 0; i < v.len; i++ {
+			result += v.Get(i) * o.Get(i)
+		}
 	}
 	return
 }
